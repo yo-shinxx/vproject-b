@@ -112,7 +112,7 @@ const BouquetVase = ({
                   flex items-center justify-center gap-2 border-2 border-amber-900"
               >
                 <Heart className="w-5 h-5 fill-current" />
-                Reveal Surprise
+                You received a message!
                 <Sparkles className="w-5 h-5" />
               </button>
             )}
