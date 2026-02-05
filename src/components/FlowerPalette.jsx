@@ -1,10 +1,11 @@
 import React from 'react';
 
-const FlowerPalette = ({ flowers, onDragStart, onDragEnd }) => {
+const FlowerPalette = ({ flowers, onDragStart, onDragEnd, onFlowerClick, selectedFlower }) => {
   return (
     <div className="fade-in-up" style={{animationDelay: '0.1s'}}>
       <div className="glass-effect rounded-3xl p-8 shadow-2xl">
         <h2 className="text-3xl font-bold text-amber-900 mb-6 flex items-center gap-3">
+          <span className="text-4xl">🌿</span>
           Choose Your Flowers
         </h2>
         <div className="grid grid-cols-3 gap-4">
@@ -14,7 +15,8 @@ const FlowerPalette = ({ flowers, onDragStart, onDragEnd }) => {
               draggable
               onDragStart={() => onDragStart(flower)}
               onDragEnd={onDragEnd}
-              className="flower-cursor group relative"
+              onClick={() => onFlowerClick(flower)}
+              className="flower-cursor group relative touch-none select-none"
               style={{animationDelay: `${index * 0.1}s`}}
             >
               <div className={`
@@ -23,6 +25,7 @@ const FlowerPalette = ({ flowers, onDragStart, onDragEnd }) => {
                 hover:scale-110 hover:rotate-3 hover:shadow-2xl
                 active:scale-95
                 petal-shadow
+                ${selectedFlower?.id === flower.id ? 'ring-4 ring-amber-600 scale-105' : ''}
               `}>
                 <div className="text-6xl text-center mb-2 float-animation" style={{animationDelay: `${index * 0.3}s`}}>
                   {flower.emoji}
@@ -43,6 +46,11 @@ const FlowerPalette = ({ flowers, onDragStart, onDragEnd }) => {
             </div>
           ))}
         </div>
+        {selectedFlower && (
+          <p className="text-amber-800 text-center mt-4 text-sm animate-pulse">
+            Tap the vase to add {selectedFlower.name} 👆
+          </p>
+        )}
       </div>
     </div>
   );

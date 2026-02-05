@@ -90,3 +90,14 @@ h1, h2, h3 {
 .heart-beat {
   animation: heartBeat 1s ease-in-out infinite;
 }
+
+.touch-none {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.select-none {
+  -webkit-user-select: none;
+  user-select: none;
+}

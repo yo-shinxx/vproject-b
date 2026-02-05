@@ -6,14 +6,17 @@ const BouquetVase = ({
   draggedFlower, 
   onDrop, 
   onDragOver, 
+  onVaseClick,
   removeFlower, 
   resetBouquet, 
-  revealInvitation 
+  revealInvitation,
+  selectedFlower
 }) => {
   return (
     <div className="fade-in-up" style={{animationDelay: '0.2s'}}>
       <div className="glass-effect rounded-3xl p-8 shadow-2xl min-h-[500px] relative">
         <h2 className="text-3xl font-bold text-amber-900 mb-6 flex items-center gap-3">
+          <span className="text-4xl">💝</span>
           Your Bouquet
           {bouquetFlowers.length > 0 && (
             <span className="ml-auto text-xl bg-gradient-to-r from-amber-600 to-orange-700 text-white px-4 py-1 rounded-full">
@@ -26,25 +29,29 @@ const BouquetVase = ({
         <div
           onDrop={onDrop}
           onDragOver={onDragOver}
+          onClick={onVaseClick}
           className={`
             relative min-h-[350px] rounded-2xl 
             border-4 border-dashed transition-all duration-300
-            ${draggedFlower 
-              ? 'border-amber-600 bg-amber-50 scale-105' 
+            ${draggedFlower || selectedFlower
+              ? 'border-amber-600 bg-amber-50 scale-105 cursor-pointer' 
               : 'border-stone-400 bg-gradient-to-b from-transparent to-amber-50/30'
             }
           `}
         >
           {bouquetFlowers.length === 0 ? (
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="text-center">
                 <div className="text-8xl mb-4 opacity-30">🏺</div>
+                <p className="text-stone-500 text-xl italic">
+                  Drag or tap flowers, then tap here
+                </p>
               </div>
             </div>
           ) : (
             <>
               {/* Vase at bottom */}
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-48 h-32 z-0">
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-48 h-32 z-0 pointer-events-none">
                 <div className="w-full h-full bg-gradient-to-b from-amber-700 to-orange-900 rounded-b-full opacity-80 
                   shadow-inner border-t-4 border-amber-900"></div>
               </div>
@@ -54,11 +61,14 @@ const BouquetVase = ({
                 {bouquetFlowers.map((flower, index) => (
                   <div
                     key={flower.uniqueId}
-                    onClick={() => removeFlower(flower.uniqueId)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeFlower(flower.uniqueId);
+                    }}
                     className="absolute cursor-pointer group transition-all duration-300 hover:scale-125 hover:z-20"
                     style={{
                       left: `${50 + flower.position.x}%`,
-                      top: `${400 + flower.position.y}%`,
+                      top: `${450 + flower.position.y}%`,
                       transform: `translate(-50%, -50%) rotate(${flower.rotation}deg)`,
                       animationDelay: `${index * 0.1}s`
                     }}
@@ -72,7 +82,7 @@ const BouquetVase = ({
                       <div className="absolute -top-8 left-1/2 -translate-x-1/2 
                         opacity-0 group-hover:opacity-100 transition-opacity
                         bg-red-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                        Click to remove
+                        Tap to remove
                       </div>
                     </div>
                   </div>
@@ -102,7 +112,7 @@ const BouquetVase = ({
                   flex items-center justify-center gap-2 border-2 border-amber-900"
               >
                 <Heart className="w-5 h-5 fill-current" />
-                You received a message!
+                Reveal Surprise
                 <Sparkles className="w-5 h-5" />
               </button>
             )}

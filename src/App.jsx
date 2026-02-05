@@ -12,6 +12,7 @@ const App = () => {
   const [bouquetFlowers, setBouquetFlowers] = useState([]);
   const [showInvitation, setShowInvitation] = useState(false);
   const [draggedFlower, setDraggedFlower] = useState(null);
+  const [selectedFlower, setSelectedFlower] = useState(null);
 
   const handleDragStart = (flower) => {
     setDraggedFlower(flower);
@@ -21,6 +22,26 @@ const App = () => {
     setDraggedFlower(null);
   };
 
+  const handleFlowerClick = (flower) => {
+    setSelectedFlower(flower);
+  };
+
+  const handleVaseClick = () => {
+    if (selectedFlower && bouquetFlowers.length < 8) {
+      const newFlower = {
+        ...selectedFlower,
+        uniqueId: Date.now() + Math.random(),
+        position: {
+          x: Math.random() * 20 - 10,
+          y: Math.random() * 30 - 25,
+        },
+        rotation: Math.random() * 30 - 15,
+      };
+      setBouquetFlowers([...bouquetFlowers, newFlower]);
+      setSelectedFlower(null); 
+    }
+  };
+
   const handleDrop = (e) => {
     e.preventDefault();
     if (draggedFlower && bouquetFlowers.length < 8) {
@@ -28,10 +49,10 @@ const App = () => {
         ...draggedFlower,
         uniqueId: Date.now() + Math.random(),
         position: {
-          x: Math.random() * 25 - 15,
-          y: Math.random() * 50 - 30,
+          x: Math.random() * 20 - 10,
+          y: Math.random() * 30 - 25,
         },
-        rotation: Math.random() * 40 - 20,
+        rotation: Math.random() * 30 - 15,
       };
       setBouquetFlowers([...bouquetFlowers, newFlower]);
     }
@@ -66,6 +87,8 @@ const App = () => {
             flowers={flowers}
             onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
+            onFlowerClick={handleFlowerClick}
+            selectedFlower={selectedFlower}
           />
 
           <BouquetVase
@@ -73,9 +96,11 @@ const App = () => {
             draggedFlower={draggedFlower}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
+            onVaseClick={handleVaseClick}
             removeFlower={removeFlower}
             resetBouquet={resetBouquet}
             revealInvitation={revealInvitation}
+            selectedFlower={selectedFlower}
           />
         </div>
 
