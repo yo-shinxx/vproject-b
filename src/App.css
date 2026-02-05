@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&display=swap');
+
+* {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes confetti {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.1); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.sparkle-animation {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.shimmer-bg {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  background-size: 1000px 100%;
+  animation: shimmer 3s infinite;
+}
+
+.flower-cursor {
+  cursor: grab;
+}
+
+.flower-cursor:active {
+  cursor: grabbing;
+}
+
+.petal-shadow {
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+}
+
+.glass-effect {
+  background: rgba(255, 248, 240, 0.9);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(180, 140, 100, 0.3);
+  box-shadow: 0 8px 32px rgba(139, 69, 19, 0.1);
+}
+
+.confetti-piece {
+  animation: confetti 3s ease-out forwards;
+}
+
+.heart-beat {
+  animation: heartBeat 1s ease-in-out infinite;
+}
