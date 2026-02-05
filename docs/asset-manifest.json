@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/vproject-b/static/css/main.2660c0bb.css",
+    "main.js": "/vproject-b/static/js/main.01528467.js",
+    "static/media/happy happy happy.mp3": "/vproject-b/static/media/happy happy happy.6b0c5564df1da979041e.mp3",
+    "index.html": "/vproject-b/index.html",
+    "main.2660c0bb.css.map": "/vproject-b/static/css/main.2660c0bb.css.map",
+    "main.01528467.js.map": "/vproject-b/static/js/main.01528467.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2660c0bb.css",
+    "static/js/main.01528467.js"
+  ]
+}
