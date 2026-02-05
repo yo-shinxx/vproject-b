@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2660c0bb.css",
+    "main.js": "/static/js/main.57fad051.js",
+    "static/media/happy happy happy.mp3": "/static/media/happy happy happy.6b0c5564df1da979041e.mp3",
+    "index.html": "/index.html",
+    "main.2660c0bb.css.map": "/static/css/main.2660c0bb.css.map",
+    "main.57fad051.js.map": "/static/js/main.57fad051.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2660c0bb.css",
+    "static/js/main.57fad051.js"
+  ]
+}
